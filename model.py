@@ -1,10 +1,12 @@
 import csv
 import numpy as np
 import cv2
+from keras.callbacks import ModelCheckpoint
 from keras.models import Sequential, Model
 from keras.layers import Flatten, Dense, Lambda, Convolution2D, Cropping2D
 from keras.layers.pooling import MaxPooling2D
 import matplotlib.pyplot as plt
+import sklearn
 from sklearn.model_selection import train_test_split
 
 
@@ -38,7 +40,8 @@ def load_data(correction):
     
     X_train = np.array(image_paths)
     y_train = np.array(measurements)
-
+    print(len(X_train))
+    print(len(y_train))
     return X_train, y_train
 
 def nVidiaModel():
@@ -112,7 +115,7 @@ def main():
     checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
                                  monitor='val_loss',
                                  verbose=0,
-                                 save_best_only=args.save_best_only,
+                                 save_best_only=True,
                                  mode='auto')
 
     # Compiling and training the model
@@ -126,4 +129,5 @@ def main():
                     callbacks=[checkpoint], 
                     verbose=1)
 
-
+if __name__ == '__main__':
+    main()
