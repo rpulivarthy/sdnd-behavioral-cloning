@@ -86,7 +86,7 @@ def generator(samples, is_training, batch_size=32):
             for imagePath, measurement in batch_samples:
                 image = cv2.imread(imagePath)
                 image = preprocess_image(image)
-                if is_training       
+                if is_training:       
                     image, measurement = random_flip(image, measurement)
                
                 # image = cv2.cvtColor(originalImage, cv2.COLOR_BGR2RGB)
@@ -117,7 +117,7 @@ def main():
 
     # Compiling and training the model
     model.compile(loss='mse', optimizer='adam')
-    
+
     history_object = model.fit_generator(train_generator, 
                     samples_per_epoch=len(train_samples), 
                     validation_data=validation_generator, 
