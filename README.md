@@ -53,10 +53,16 @@ I haven't used Dropout or pooling. I have split my traning and validations in th
 
 #### Model parameter tuning
 Adam Optimizer. No learning rate provided
-
 #### Appropriate training data
 I have used the training data provided by udacity.
 
 ### Architecture and training documentation
-I used  [nVidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) The only modification was to add a new layer at the end to have a single output as it was required. The car did its first complete track, but there was a place in the track where it passes over the "dashed" line. More data was needed. Did the minimum. When I find more time I will more data driving backwards and add  couple of more random functions like translation and run the model again.
+1. Solution design approach
+    My initial thought after looking at the data (8k+) input data was it was not sufficeint to train the model. Thinking in the lines how we can add more data to the training model gave me the idea to add both the left and right images to the traning model. As mentioned in the lesson nVidia model is good.
+I used  [nVidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) The only modification was to add a new layer at the end to have a single output as it was required.
+Data Augmentation
+    1. I cropped the image to remove the unneccesary data from the image.
+    2. Randomly flipped the image
+Increasing the epochs didn't improve the performance. Felt 2/3 epochs will get the desired output.
+
 

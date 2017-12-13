@@ -135,6 +135,19 @@ def main():
                     nb_epoch=3,
                     callbacks=[checkpoint], 
                     verbose=1)
+    print(history_object.history.keys())
+    print('Loss')
+    print(history_object.history['loss'])
+    print('Validation Loss')
+    print(history_object.history['val_loss'])
+
+    plt.plot(history_object.history['loss'])
+    plt.plot(history_object.history['val_loss'])
+    plt.title('model mean squared error loss')
+    plt.ylabel('mean squared error loss')
+    plt.xlabel('epoch')
+    plt.legend(['training set', 'validation set'], loc='upper right')
+    plt.show()
 
 if __name__ == '__main__':
     main()
