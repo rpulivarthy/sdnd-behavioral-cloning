@@ -11,12 +11,16 @@ from sklearn.model_selection import train_test_split
 
 
 def get_image_path(file_path):
+    """
+    Get the image paths from the filepath in the csv
+    """
     filename = file_path.split('/')[-1]
     return './data/IMG/' + filename
 
 def load_data(correction):
     """
     Load the data into numpy array. Load all the images; left center and right for better training.
+    Added a small correction for the left and right images.
     """
     lines = []
     with open('./data/driving_log.csv') as csvfile:
@@ -40,8 +44,6 @@ def load_data(correction):
     
     X_train = np.array(image_paths)
     y_train = np.array(measurements)
-    print(len(X_train))
-    print(len(y_train))
     return X_train, y_train
 
 def nVidiaModel():
@@ -65,9 +67,15 @@ def nVidiaModel():
     return model
 
 def preprocess_image(image):
+    """
+    This is used in the nVidia model
+    """
     return cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
 
 def random_flip(image, measurement):
+    """
+    Flip the images and negate the measurements randomly
+    """
     if np.random.rand() < 0.5:
         image = cv2.flip(image, 1)
         measurement = -measurement
@@ -112,6 +120,7 @@ def main():
     # Model Creation
     model = nVidiaModel()
 
+    # checkpooint to save only the best from multiple epochs.
     checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
                                  monitor='val_loss',
                                  verbose=0,
