@@ -70,7 +70,7 @@ def preprocess_image(image):
     """
     This is used in the nVidia model
     """
-    return cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
+    return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 def random_flip(image, measurement):
     """
@@ -99,8 +99,6 @@ def generator(samples, is_training, batch_size=32):
                 image = preprocess_image(image)
                 if is_training:       
                     image, measurement = random_flip(image, measurement)
-               
-                # image = cv2.cvtColor(originalImage, cv2.COLOR_BGR2RGB)
                 images.append(image)
                 angles.append(measurement)
             inputs = np.array(images)
