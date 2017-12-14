@@ -1,4 +1,4 @@
 *.zip
 data/
 data1/
-run1/
+run*
