@@ -112,8 +112,8 @@ def main():
     samples = list(zip(image_paths, measurents))
     train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
-    train_generator = generator(train_samples, True, 40)
-    validation_generator = generator(validation_samples, False, 40)
+    train_generator = generator(train_samples, True, 32)
+    validation_generator = generator(validation_samples, False, 32)
 
     # Model Creation
     model = nVidiaModel()
@@ -132,7 +132,7 @@ def main():
                     samples_per_epoch=len(train_samples), 
                     validation_data=validation_generator, 
                     nb_val_samples=len(validation_samples), 
-                    nb_epoch=2,
+                    nb_epoch=6,
                     callbacks=[checkpoint], 
                     verbose=1)
     print(history_object.history.keys())
