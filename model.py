@@ -112,8 +112,8 @@ def main():
     samples = list(zip(image_paths, measurents))
     train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
-    train_generator = generator(train_samples, True, 128)
-    validation_generator = generator(validation_samples, False, 32)
+    train_generator = generator(train_samples, True, 64)
+    validation_generator = generator(validation_samples, False, 64)
 
     # Model Creation
     model = nVidiaModel()
