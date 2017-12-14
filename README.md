@@ -63,6 +63,7 @@ I used  [nVidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall
 Data Augmentation
     1. I cropped the image to remove the unneccesary data from the image.
     2. Randomly flipped the image
-Increasing the epochs didn't improve the performance. Felt 2/3 epochs will get the desired output.
+    3. Changed all the images to RGB.
+Increasing the epochs didn't improve the performance. Trained with 6 epoch. but the third one is the best.
 
 
